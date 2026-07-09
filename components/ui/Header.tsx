@@ -1,5 +1,6 @@
 import { StyleSheet, Platform, StatusBar, View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; 
+import { theme } from '../../constants/theme';
 
 export function Header({ title }) {
     const navigation = useNavigation();
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#1A1A1A',
+    color: theme.colors.textPrimary,
     textAlign: 'center',
     flex: 1,
   },
