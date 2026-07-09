@@ -27,8 +27,9 @@ export function ProductList({
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
-      renderItem={({ item }) => <ProductCard product={item} onPress={onProductPress} />}
-
+      renderItem={({ item }) => (
+        <ProductCard product={item} onPress={() => onProductPress(item.id)} />
+      )}
     />
   );
 }

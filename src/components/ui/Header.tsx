@@ -2,7 +2,11 @@ import { StyleSheet, Platform, StatusBar, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { theme } from "../../constants/theme";
 
-export function Header({ title }) {
+interface HeaderProps {
+  title: string;
+}
+
+export function Header({ title }: HeaderProps) {
   const navigation = useNavigation();
 
   return (

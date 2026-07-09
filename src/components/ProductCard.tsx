@@ -5,14 +5,14 @@ import { theme } from "../constants/theme";
 
 interface ProductCardProps {
   product: Product;
-  onPress?: () => void;
+  onPress?: (productId: string) => void;
 }
 
 export function ProductCard({ product, onPress }: ProductCardProps) {
   return (
     <Pressable
       style={styles.card}
-      onPress={onPress}
+      onPress={() => onPress?.(product.id)}
       android_ripple={{ color: theme.colors.border }}
     >
       <View style={styles.imageContainer}>
