@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     backgroundColor: theme.colors.surface,
-    borderRadius: theme.radii.xl,
+    borderRadius: theme.radii.sm,
     overflow: "hidden",
   },
 

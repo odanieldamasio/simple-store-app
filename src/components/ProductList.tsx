@@ -7,9 +7,15 @@ interface ProductListProps {
   products: Product[];
   refreshing: boolean;
   onRefresh: () => void;
+  onProductPress: (id: string) => void;
 }
 
-export function ProductList({ products, refreshing, onRefresh }: ProductListProps) {
+export function ProductList({
+  products,
+  refreshing,
+  onProductPress,
+  onRefresh,
+}: ProductListProps) {
   return (
     <FlatList
       data={products}
@@ -21,7 +27,8 @@ export function ProductList({ products, refreshing, onRefresh }: ProductListProp
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
-      renderItem={({ item }) => <ProductCard product={item} />}
+      renderItem={({ item }) => <ProductCard product={item} onPress={onProductPress} />}
+
     />
   );
 }

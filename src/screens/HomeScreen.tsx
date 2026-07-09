@@ -3,11 +3,23 @@ import { StyleSheet, Text, View } from "react-native";
 import { Header } from "../components/ui/Header";
 import { ProductList } from "../components/ProductList";
 import { useProducts } from "../hooks/useProducts";
+import { useCallback } from "react";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../navigation/types";
 
 export default function HomeScreen() {
   const { products, loading, refreshing, error, refresh, reload } =
     useProducts();
-  const navigation = useNavigation();
+
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+  const handleProductPress = useCallback(
+    (id: string) => {
+      navigation.navigate("ProductDetails", { id });
+    },
+    [navigation],
+  );
 
   return (
     <View style={styles.container}>
@@ -16,6 +28,7 @@ export default function HomeScreen() {
         products={products}
         refreshing={refreshing}
         onRefresh={refresh}
+        onProductPress={handleProductPress}
       />
     </View>
   );
