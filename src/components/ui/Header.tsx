@@ -32,7 +32,7 @@ export function Header({ title = "Simple Store" }: HeaderProps) {
           <View style={styles.locationRow}>
             <Text style={styles.locationText}>
               Developed with <Ionicons name="heart" size={14} color="#f50b4d" />{" "}
-              by Daniel Damasio
+              for Valia
             </Text>
           </View>
         </View>
