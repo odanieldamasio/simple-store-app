@@ -21,7 +21,7 @@ export default function HomeScreen() {
     { id: "all", label: "Todos", icon: "apps" },
   ]);
 
-  const categoryMetadata = {
+  const categoryMetadata: Record<string, { label: string; icon: string }> = {
     electronics: {
       label: "Electronics",
       icon: "laptop-outline",
@@ -38,7 +38,7 @@ export default function HomeScreen() {
       label: "Women's",
       icon: "woman-outline",
     },
-  } as const;
+  };
 
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();

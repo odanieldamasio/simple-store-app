@@ -61,7 +61,7 @@ export default function FavoritesScreen() {
         >
           <Ionicons name="arrow-back" size={20} color="#111827" />
         </Pressable>
-        <Text style={styles.headerTitle}>Favoritos</Text>
+        <Text style={styles.headerTitle}>Favorites</Text>
         <View style={styles.placeholder} />
       </View>
 
@@ -116,19 +116,16 @@ const styles = StyleSheet.create({
   listContent: {
     paddingHorizontal: 20,
     paddingBottom: 24,
+    gap: 8,
   },
   card: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: theme.colors.surface,
-    borderRadius: 18,
+    borderRadius: theme.radii.md,
     padding: 12,
-    marginBottom: 12,
-    shadowColor: "#000000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.08,
-    shadowRadius: 10,
-    elevation: 2,
+     borderWidth: 1,
+    borderColor: theme.colors.border,
   },
   image: {
     width: 64,
