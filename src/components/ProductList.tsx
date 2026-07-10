@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import { FlatList, RefreshControl, StyleSheet } from "react-native";
 
 import { ProductCard } from "./ProductCard";
@@ -9,6 +10,7 @@ interface ProductListProps {
   onRefresh: () => void;
   onProductPress: (id: string) => void;
   scrollEnabled?: boolean;
+  listHeaderComponent?: ReactElement | null;
 }
 
 export function ProductList({
@@ -17,6 +19,7 @@ export function ProductList({
   onProductPress,
   onRefresh,
   scrollEnabled = true,
+  listHeaderComponent,
 }: ProductListProps) {
   return (
     <FlatList
@@ -27,6 +30,7 @@ export function ProductList({
       scrollEnabled={scrollEnabled}
       contentContainerStyle={styles.content}
       columnWrapperStyle={styles.row}
+      ListHeaderComponent={listHeaderComponent}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }

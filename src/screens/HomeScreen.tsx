@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { Image, StyleSheet, View, ScrollView } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { useCallback, useMemo, useState } from "react";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
@@ -91,45 +91,43 @@ export default function HomeScreen() {
     [navigation],
   );
 
+  const listHeaderComponent = (
+    <>
+      <View style={styles.bannerContainer}>
+        <Image
+          source={require("../../assets/banner.png")}
+          style={styles.bannerImage}
+          resizeMode="contain"
+        />
+      </View>
+
+      <View style={styles.searchSection}>
+        <SearchBar value={search} onChangeText={setSearch} />
+      </View>
+
+      <View style={styles.filterSection}>
+        <CategoryFilter
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onSelectCategory={setSelectedCategory}
+        />
+      </View>
+    </>
+  );
+
   return (
     <View style={styles.container}>
       <Header title="Simple Store" />
 
-      <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={styles.bannerContainer}>
-          <Image
-            source={require("../../assets/banner.png")}
-            style={styles.bannerImage}
-            resizeMode="contain"
-          />
-        </View>
-
-        <View style={styles.searchSection}>
-          <SearchBar value={search} onChangeText={setSearch} />
-        </View>
-
-        <View style={styles.filterSection}>
-          <CategoryFilter
-            categories={categories}
-            selectedCategory={selectedCategory}
-            onSelectCategory={setSelectedCategory}
-          />
-        </View>
-
-        <View style={styles.listWrapper}>
-          <ProductList
-            products={filteredProducts}
-            refreshing={refreshing}
-            onRefresh={refresh}
-            onProductPress={handleProductPress}
-            scrollEnabled={false}
-          />
-        </View>
-      </ScrollView>
+      <View style={styles.listWrapper}>
+        <ProductList
+          products={filteredProducts}
+          refreshing={refreshing}
+          onRefresh={refresh}
+          onProductPress={handleProductPress}
+          listHeaderComponent={listHeaderComponent}
+        />
+      </View>
     </View>
   );
 }
@@ -138,12 +136,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.offWhite,
-  },
-  scrollView: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingBottom: theme.spacing.xl,
   },
   bannerContainer: {
     paddingHorizontal: theme.spacing.lg,
@@ -162,6 +154,7 @@ const styles = StyleSheet.create({
     paddingBottom: theme.spacing.md,
   },
   listWrapper: {
+    flex: 1,
     paddingHorizontal: theme.spacing.sm,
   },
 });
