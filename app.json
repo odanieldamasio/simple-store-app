@@ -12,7 +12,8 @@
       "backgroundColor": "#007AFF"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.simplestoreapp"
     },
     "android": {
       "adaptiveIcon": {
@@ -37,6 +38,11 @@
           "backgroundColor": "#007AFF"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "0c0005ff-1da2-4ae0-ba60-60f0ad903603"
+      }
+    }
   }
 }
