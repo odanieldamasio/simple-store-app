@@ -59,7 +59,10 @@ export default function HomeScreen() {
           };
         });
 
-        setCategories([{ id: "all", label: "All", icon: "apps" }, ...mappedCategories]);
+        setCategories([
+          { id: "all", label: "All", icon: "apps" },
+          ...mappedCategories,
+        ]);
       } catch (error) {
         console.warn("Erro ao carregar categorias", error);
       }

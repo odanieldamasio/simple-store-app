@@ -23,7 +23,8 @@ import { Product } from "../types/Product";
 
 export default function ProductDetailsScreen() {
   const route = useRoute<RouteProp<RootStackParamList, "ProductDetails">>();
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { id } = route.params;
 
   const { product, isLoading, error, refetch } = useProductDetails(id);
@@ -97,7 +98,10 @@ export default function ProductDetailsScreen() {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.screen}>
         <View style={styles.header}>
-          <Pressable style={styles.iconButton} onPress={() => navigation.goBack()}>
+          <Pressable
+            style={styles.iconButton}
+            onPress={() => navigation.goBack()}
+          >
             <Ionicons
               name="chevron-back"
               size={22}
@@ -134,7 +138,7 @@ export default function ProductDetailsScreen() {
           </View>
 
           <View style={styles.infoContainer}>
-            <View style={styles.titleRow}>
+            <View style={styles.titleCol}>
               <Text style={styles.title}>{product.title}</Text>
               <Text style={styles.priceValue}>${product.price.toFixed(2)}</Text>
             </View>
@@ -144,7 +148,11 @@ export default function ProductDetailsScreen() {
                 <Text style={styles.categoryText}>{product.category}</Text>
               </View>
               <View style={styles.metaChip}>
-                <Ionicons name="sparkles-outline" size={14} color={theme.colors.primary} />
+                <Ionicons
+                  name="sparkles-outline"
+                  size={14}
+                  color={theme.colors.primary}
+                />
                 <Text style={styles.metaChipText}>Premium</Text>
               </View>
             </View>
@@ -174,13 +182,14 @@ export default function ProductDetailsScreen() {
                   contentContainerStyle={styles.relatedContent}
                 >
                   {relatedProducts.map((item, index) => (
-                    <View
-                      key={item.id}
-                      style={styles.relatedCard}
-                    >
+                    <View key={item.id} style={styles.relatedCard}>
                       <Pressable
                         style={styles.relatedPressable}
-                        onPress={() => navigation.navigate("ProductDetails", { id: String(item.id) })}
+                        onPress={() =>
+                          navigation.navigate("ProductDetails", {
+                            id: String(item.id),
+                          })
+                        }
                       >
                         <Image
                           source={{ uri: item.image }}
@@ -190,7 +199,9 @@ export default function ProductDetailsScreen() {
                         <Text style={styles.relatedName} numberOfLines={2}>
                           {item.title}
                         </Text>
-                        <Text style={styles.relatedPrice}>${item.price.toFixed(2)}</Text>
+                        <Text style={styles.relatedPrice}>
+                          ${item.price.toFixed(2)}
+                        </Text>
                       </Pressable>
                     </View>
                   ))}
@@ -199,29 +210,6 @@ export default function ProductDetailsScreen() {
             ) : null}
           </View>
         </ScrollView>
-
-        <View style={styles.footer}>
-          <LinearGradient
-            colors={[theme.colors.primary, theme.colors.secondary]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={styles.primaryButton}
-          >
-            <Pressable
-              style={({ pressed }) => [
-                styles.primaryButtonInner,
-                pressed && styles.buttonPressed,
-              ]}
-            >
-              <Ionicons
-                name="cart-outline"
-                size={20}
-                color={theme.colors.textLight}
-              />
-              <Text style={styles.primaryButtonText}>Add to Cart</Text>
-            </Pressable>
-          </LinearGradient>
-        </View>
       </View>
     </SafeAreaView>
   );
@@ -279,17 +267,12 @@ const styles = StyleSheet.create({
   },
   imageCard: {
     height: 320,
-    borderRadius: 32,
+    borderRadius: 14,
     backgroundColor: theme.colors.surface,
     justifyContent: "center",
     alignItems: "center",
     padding: theme.spacing.xl,
     marginTop: theme.spacing.xs,
-    shadowColor: theme.colors.shadow,
-    shadowOffset: { width: 0, height: 14 },
-    shadowOpacity: 0.08,
-    shadowRadius: 26,
-    elevation: 4,
   },
   image: {
     width: "75%",
@@ -299,21 +282,21 @@ const styles = StyleSheet.create({
     paddingTop: theme.spacing.xl,
     paddingBottom: theme.spacing.sm,
   },
-  titleRow: {
-    flexDirection: "row",
+  titleCol: {
+    flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "flex-start",
     gap: theme.spacing.md,
   },
   title: {
     flex: 1,
-    fontSize: 30,
+    fontSize: theme.typography.sizes.xl,
     fontWeight: "700",
     color: theme.colors.textPrimary,
     lineHeight: 36,
   },
   priceValue: {
-    fontSize: 28,
+    fontSize: theme.typography.sizes.xl,
     fontWeight: "800",
     color: theme.colors.textPrimary,
   },
@@ -384,13 +367,8 @@ const styles = StyleSheet.create({
     width: 132,
     marginRight: theme.spacing.sm,
     backgroundColor: theme.colors.surface,
-    borderRadius: 24,
+    borderRadius: 14,
     padding: 12,
-    shadowColor: theme.colors.shadow,
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.06,
-    shadowRadius: 14,
-    elevation: 2,
   },
   relatedPressable: {
     flex: 1,
