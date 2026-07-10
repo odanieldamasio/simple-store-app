@@ -68,9 +68,9 @@ export default function FavoritesScreen() {
       {favorites.length === 0 ? (
         <View style={styles.emptyState}>
           <Ionicons name="heart-outline" size={40} color="#9CA3AF" />
-          <Text style={styles.emptyTitle}>Nenhum favorito ainda</Text>
+          <Text style={styles.emptyTitle}>No favorites yet</Text>
           <Text style={styles.emptyText}>
-            Adicione produtos para acompanhar aqui.
+            Tap the heart icon to save products to your favorites.
           </Text>
         </View>
       ) : (
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.surface,
     borderRadius: theme.radii.md,
     padding: 12,
-     borderWidth: 1,
+    borderWidth: 1,
     borderColor: theme.colors.border,
   },
   image: {

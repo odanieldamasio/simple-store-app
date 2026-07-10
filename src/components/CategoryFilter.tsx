@@ -23,7 +23,7 @@ export function CategoryFilter({
 }: CategoryFilterProps) {
   return (
     <View style={styles.wrapper}>
-      <Text style={[styles.labelTitle]}>Catetgories</Text>
+      <Text style={[styles.labelTitle]}>Categories</Text>
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
