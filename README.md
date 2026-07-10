@@ -60,7 +60,6 @@ npm run web
 - Os dados são fornecidos por uma API pública e podem sofrer lentidão ou indisponibilidade temporária.
 - A solução atual foi pensada para uso mobile e web básico, sem autenticação.
 - A splash screen é configurada para o fluxo padrão do Expo e pode exigir reinício do servidor em alguns ambientes.
-- A API pública
 
 ## Performance e boas práticas
 - Uso de hooks e memoização para evitar recomputações desnecessárias em listas e filtros.
