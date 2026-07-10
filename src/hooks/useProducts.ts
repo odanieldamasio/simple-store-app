@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect, use } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { Product } from "../types/Product";
 import { getProducts } from "../services/productService";
 
@@ -7,12 +7,6 @@ export function useProducts() {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState(false);
-  const [productId, setProductId] = useState<string | null>(null);
-
-  const productsById = products.reduce((acc, product) => {
-    acc[product.id] = product;
-    return acc;
-  }, {} as Record<string, Product>);
 
   const loadProducts = useCallback(async () => {
     try {

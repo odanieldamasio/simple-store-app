@@ -1,8 +1,9 @@
 import { ReactElement } from "react";
-import { FlatList, RefreshControl, StyleSheet } from "react-native";
+import { FlatList, RefreshControl, StyleSheet, Text, View } from "react-native";
 
 import { ProductCard } from "./ProductCard";
 import { Product } from "../types/Product";
+import { theme } from "../constants/theme";
 
 interface ProductListProps {
   products: Product[];
@@ -31,6 +32,11 @@ export function ProductList({
       contentContainerStyle={styles.content}
       columnWrapperStyle={styles.row}
       ListHeaderComponent={listHeaderComponent}
+      ListEmptyComponent={
+        <View style={styles.emptyContainer}>
+          <Text style={styles.emptyText}>No products found</Text>
+        </View>
+      }
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
@@ -43,10 +49,22 @@ export function ProductList({
 
 const styles = StyleSheet.create({
   content: {
-    padding: 8,
-    gap: 8,
+    padding: theme.spacing.sm,
+    gap: theme.spacing.sm,
+    flexGrow: 1,
   },
   row: {
-    gap: 8,
+    gap: theme.spacing.sm,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: theme.spacing.xl,
+  },
+  emptyText: {
+    color: theme.colors.textMuted,
+    fontSize: theme.typography.sizes.md,
+    fontWeight: theme.typography.weights.medium,
   },
 });
