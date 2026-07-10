@@ -9,17 +9,26 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { useFavorites } from "../hooks/useFavorites";
 import { theme } from "../constants/theme";
+import { RootStackParamList } from "../navigation/types";
 import { FavoriteProduct } from "../types/FavoriteProduct";
 
 export default function FavoritesScreen() {
-  const navigation = useNavigation();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { favorites, remove } = useFavorites();
 
   const renderItem = ({ item }: { item: FavoriteProduct }) => (
-    <View style={styles.card}>
+    <Pressable
+      style={styles.card}
+      onPress={() =>
+        navigation.navigate("ProductDetails", { id: item.id.toString() })
+      }
+      android_ripple={{ color: theme.colors.border }}
+    >
       <Image
         source={{ uri: item.image }}
         style={styles.image}
@@ -31,10 +40,16 @@ export default function FavoritesScreen() {
         </Text>
         <Text style={styles.price}>${item.price.toFixed(2)}</Text>
       </View>
-      <Pressable style={styles.removeButton} onPress={() => remove(item.id)}>
+      <Pressable
+        style={styles.removeButton}
+        onPress={(event) => {
+          event.stopPropagation();
+          remove(item.id);
+        }}
+      >
         <Ionicons name="heart" size={18} color="#EF4444" />
       </Pressable>
-    </View>
+    </Pressable>
   );
 
   return (

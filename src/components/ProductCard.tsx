@@ -1,5 +1,7 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
+import { useFavorites } from "../hooks/useFavorites";
 import { Product } from "../types/Product";
 import { theme } from "../constants/theme";
 
@@ -9,6 +11,9 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, onPress }: ProductCardProps) {
+  const { isFavorite, toggle } = useFavorites();
+  const favorite = isFavorite(Number(product.id));
+
   return (
     <Pressable
       style={styles.card}
@@ -21,6 +26,25 @@ export function ProductCard({ product, onPress }: ProductCardProps) {
           style={styles.image}
           resizeMode="contain"
         />
+
+        <Pressable
+          style={styles.favoriteButton}
+          onPress={(event) => {
+            event.stopPropagation();
+            toggle({
+              id: Number(product.id),
+              title: product.title,
+              price: product.price,
+              image: product.image,
+            });
+          }}
+        >
+          <Ionicons
+            name={favorite ? "heart" : "heart-outline"}
+            size={16}
+            color={favorite ? "#EF4444" : "#111827"}
+          />
+        </Pressable>
       </View>
 
       <View style={styles.content}>
@@ -52,11 +76,28 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: theme.spacing.lg,
+    position: "relative",
   },
 
   image: {
     width: "100%",
     height: "100%",
+  },
+  favoriteButton: {
+    position: "absolute",
+    top: theme.spacing.sm,
+    right: theme.spacing.sm,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: theme.colors.surface,
+    justifyContent: "center",
+    alignItems: "center",
+    shadowColor: theme.colors.shadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.12,
+    shadowRadius: 6,
+    elevation: 2,
   },
 
   content: {

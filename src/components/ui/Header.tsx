@@ -28,10 +28,12 @@ export function Header({ title = "Simple Store" }: HeaderProps) {
     <SafeAreaView edges={["top"]} style={styles.safeArea}>
       <View style={styles.container}>
         <View style={styles.left}>
-          <Text style={styles.label}>Endereço de entrega</Text>
+          <Text style={styles.label}>{title}</Text>
           <View style={styles.locationRow}>
-            <Ionicons name="location" size={14} color="#F59E0B" />
-            <Text style={styles.locationText}>São Paulo, Brasil</Text>
+            <Text style={styles.locationText}>
+              Developed with <Ionicons name="heart" size={14} color="#f50b4d" />{" "}
+              by Daniel Damasio
+            </Text>
           </View>
         </View>
 

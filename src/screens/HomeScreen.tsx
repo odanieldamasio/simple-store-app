@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
   bannerContainer: {
     paddingHorizontal: theme.spacing.lg,
-    paddingTop: theme.spacing.sm,
+    // paddingTop: theme.spacing.sm,
     paddingBottom: theme.spacing.sm,
   },
   bannerImage: {

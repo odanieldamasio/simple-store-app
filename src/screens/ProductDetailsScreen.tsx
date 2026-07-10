@@ -15,6 +15,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { RootStackParamList } from "../navigation/types";
 import { useProductDetails } from "../hooks/useProductDetails";
+import { useFavorites } from "../hooks/useFavorites";
 import { theme } from "../constants/theme";
 import { ProductCategoryTag } from "../components/ui/ProductCategoryTag";
 
@@ -23,6 +24,7 @@ export default function ProductDetailsScreen() {
   const { id } = route.params;
 
   const { product, isLoading, error, refetch } = useProductDetails(id);
+  const { isFavorite, toggle } = useFavorites();
   const [expanded, setExpanded] = useState(false);
 
   if (isLoading) {
@@ -116,11 +118,25 @@ export default function ProductDetailsScreen() {
             </Pressable>
           </LinearGradient>
 
-          <Pressable style={styles.favoriteButton}>
+          <Pressable
+            style={styles.favoriteButton}
+            onPress={() =>
+              toggle({
+                id: Number(product.id),
+                title: product.title,
+                price: product.price,
+                image: product.image,
+              })
+            }
+          >
             <Ionicons
-              name="heart-outline"
+              name={isFavorite(Number(product.id)) ? "heart" : "heart-outline"}
               size={20}
-              color={theme.colors.textPrimary}
+              color={
+                isFavorite(Number(product.id))
+                  ? "#EF4444"
+                  : theme.colors.textPrimary
+              }
             />
           </Pressable>
         </View>
