@@ -1,11 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, View, ScrollView } from "react-native";
 import { Header } from "../components/ui/Header";
 import { ProductList } from "../components/ProductList";
 import { useProducts } from "../hooks/useProducts";
 import { useCallback } from "react";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/types";
+import { theme } from "../constants/theme";
 
 export default function HomeScreen() {
   const { products, loading, refreshing, error, refresh, reload } =
@@ -24,20 +25,55 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Header title="Simple Store" />
-      <ProductList
-        products={products}
-        refreshing={refreshing}
-        onRefresh={refresh}
-        onProductPress={handleProductPress}
-      />
+
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.bannerContainer}>
+          <Image
+            source={require("../../assets/banner.png")}
+            style={styles.bannerImage}
+            resizeMode="contain"
+          />
+        </View>
+
+        <View style={styles.listWrapper}>
+          <ProductList
+            products={products}
+            refreshing={refreshing}
+            onRefresh={refresh}
+            onProductPress={handleProductPress}
+            scrollEnabled={false}
+          />
+        </View>
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // flex: 1,
+    flex: 1,
+    backgroundColor: theme.colors.offWhite,
+  },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingBottom: theme.spacing.xl,
+  },
+  bannerContainer: {
+    paddingHorizontal: theme.spacing.lg,
+    paddingTop: theme.spacing.sm,
+    paddingBottom: theme.spacing.sm,
+  },
+  bannerImage: {
+    width: "100%",
+    height: 200,
+  },
+  listWrapper: {
+    paddingHorizontal: theme.spacing.sm,
   },
 });

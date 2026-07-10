@@ -1,30 +1,31 @@
 export const theme = {
   colors: {
     // Marca
-    primary: '#007AFF',
-    secondary: '#5856D6',
+    primary: "#007AFF",
+    secondary: "#5856D6",
 
     // Fundo
-    background: '#F5F5F5',
-    surface: '#FFFFFF',
-    surfaceSecondary: '#FAFAFA',
-    border: '#EAEAEA',
+    background: "#F5F5F5",
+    offWhite: "#F8F9FB",
+    surface: "#FFFFFF",
+    surfaceSecondary: "#FAFAFA",
+    border: "#EAEAEA",
 
     // Texto
-    textPrimary: '#1A1A1A',
-    textSecondary: '#666666',
-    textMuted: '#999999',
-    textLight: '#FFFFFF',
+    textPrimary: "#1A1A1A",
+    textSecondary: "#666666",
+    textMuted: "#999999",
+    textLight: "#FFFFFF",
 
     // Estados
-    success: '#34C759',
-    danger: '#FF3B30',
-    warning: '#FF9500',
+    success: "#34C759",
+    danger: "#FF3B30",
+    warning: "#FF9500",
 
     // Extras
-    overlay: 'rgba(0, 0, 0, 0.3)',
-    shadow: '#000000',
-    skeleton: '#EFEFEF',
+    overlay: "rgba(0, 0, 0, 0.3)",
+    shadow: "#000000",
+    skeleton: "#EFEFEF",
   },
 
   spacing: {
@@ -56,16 +57,16 @@ export const theme = {
     },
 
     weights: {
-      regular: '400',
-      medium: '500',
-      semibold: '600',
-      bold: '700',
+      regular: "400",
+      medium: "500",
+      semibold: "600",
+      bold: "700",
     },
   },
 
   shadows: {
     sm: {
-      shadowColor: '#000',
+      shadowColor: "#000",
       shadowOffset: {
         width: 0,
         height: 1,
@@ -76,7 +77,7 @@ export const theme = {
     },
 
     md: {
-      shadowColor: '#000',
+      shadowColor: "#000",
       shadowOffset: {
         width: 0,
         height: 3,
@@ -87,7 +88,7 @@ export const theme = {
     },
 
     lg: {
-      shadowColor: '#000',
+      shadowColor: "#000",
       shadowOffset: {
         width: 0,
         height: 6,

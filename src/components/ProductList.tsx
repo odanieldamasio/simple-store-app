@@ -8,6 +8,7 @@ interface ProductListProps {
   refreshing: boolean;
   onRefresh: () => void;
   onProductPress: (id: string) => void;
+  scrollEnabled?: boolean;
 }
 
 export function ProductList({
@@ -15,6 +16,7 @@ export function ProductList({
   refreshing,
   onProductPress,
   onRefresh,
+  scrollEnabled = true,
 }: ProductListProps) {
   return (
     <FlatList
@@ -22,6 +24,7 @@ export function ProductList({
       keyExtractor={(item) => item.id.toString()}
       numColumns={2}
       showsVerticalScrollIndicator={false}
+      scrollEnabled={scrollEnabled}
       contentContainerStyle={styles.content}
       columnWrapperStyle={styles.row}
       refreshControl={
